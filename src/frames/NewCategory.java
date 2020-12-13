@@ -1,77 +1,64 @@
 package frames;
-/////////////////////////////////////////*CHECK LAB FOR IO MANAGEMENT*//////////////////////////////////
+
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 
-import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import dataObjects.CategoryData;
 import ui.*;
 
+@SuppressWarnings("serial")
 public class NewCategory extends JPanel{
 	//Attributes
-	ArrayList<String> categories = new ArrayList<String>();
+	private CategoryData data = new CategoryData();
+	
+	private JPanel panel = new JPanel();
+	private JLabel label = new JLabel("Category name: ");
+	private JTextField text = new JTextField(20);
+	private JButton addButton = new JButton("Add");
 	
 	//Constructor
 	public NewCategory() {
-		//Show the available categories
+		this.setLayout(new BorderLayout());
 		
-		//Add category
-		JTextField text = new JTextField(20);
-		JButton addButton = new JButton("Add");
+		//Table containing the current categories
+		JTable t = new JTable(data);
+        JScrollPane scrollPane = new JScrollPane(t);
+        	this.add(scrollPane);
+        
+        //To make the JScrollPane as small as the JTable
+    	t.setPreferredScrollableViewportSize(new Dimension(t.getPreferredSize().width, t.getRowHeight() * t.getRowCount()));
+    	
+    	//Adding  the components to the "Add a Category" panel
+    	panel.add(label);
+		panel.add(text);
+		panel.add(addButton);
+		
+		//Style the button
 		Styles.styleButton(addButton);
-		
+				
+		//Button listener
 		addButton.setActionCommand("newEntry");
     	ActionListener addButtonAL = new ButtonActionListener();
     	addButton.addActionListener(addButtonAL);
-    	
-    	//Adding  the components to the panel
-    	this.add(Box.createRigidArea(new Dimension(0, 15)));
-    	this.add(Box.createRigidArea(new Dimension(0, 15)));
-		this.add(text);
-		this.add(Box.createRigidArea(new Dimension(0, 15)));
-		this.add(addButton);
+		
+    	//Add the last panel to the main panel
+		this.add(panel, BorderLayout.SOUTH);
 	}
 	
-	final private class ButtonActionListener implements ActionListener{
+	//Action listener for the Add button
+	final class ButtonActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			//If the category already exists make an alert
-			fillTable("food");
-		}
-	}
-	
-	private void fillTable() throws IOException {
-		try {
-			FileReader fr = new FileReader("categories.txt");
-			BufferedReader br = new BufferedReader(fr);
-			while(true) {
-				String line = br.readLine();
-				if(line==null) break;
-				categories.add(line);
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void fillTable(String input) {
-		try {
-			FileWriter fw = new FileWriter("categories.txt");
-			PrintWriter pw = new PrintWriter(fw);
-			pw.println(input);
-			pw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+			//add the entry to the table and save it to the database
+			data.addCategory(text.getText());
 		}
 	}
 }

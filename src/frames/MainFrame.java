@@ -1,5 +1,10 @@
 package frames;
 
+/* THINGS TO FIX */
+//the categories come from the categories.txt file
+//the add button adds the entry to the wallet.txt file with the given date
+//if the user types wrong entries make an alert and don't add the entry
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
