@@ -22,7 +22,6 @@ public class FileManagement {
 			ObjectInputStream in = new ObjectInputStream(f);
 			categories = ((ArrayList<Object[]>)in.readObject());
 			in.close();
-			System.out.println("The category data has been loaded. \r\n");
 		} 
 		catch(IOException ex) { 
 			System.out.println("There was a problem. (IOException in load function)\r\n");
@@ -40,7 +39,6 @@ public class FileManagement {
 			ObjectOutputStream out = new ObjectOutputStream(f);
 			out.writeObject(categories);
 			out.close();
-			System.out.println("Saved to the file\r\n");
 		}
 		catch(IOException e) {
 			System.out.println("There was a problem...");
