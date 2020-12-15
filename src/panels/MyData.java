@@ -82,6 +82,12 @@ public class MyData extends JPanel{
                 	 setLabels();
                  }
                }
+               else if(me.getClickCount() == 1) {
+            	   JTable target = (JTable)me.getSource();
+                   int row = target.getSelectedRow(); 
+                   int col = target.getSelectedColumn();
+                   data.setValueAt(t.getValueAt(row, col), row, col);
+               }
             }
         });
     	

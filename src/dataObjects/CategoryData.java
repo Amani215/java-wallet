@@ -42,9 +42,16 @@ public class CategoryData extends AbstractTableModel implements Serializable{
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) { return categories.get(rowIndex)[columnIndex]; }
 
+	@Override
+	public boolean isCellEditable(int row, int column) {
+			return true;
+	}
+	
 	//Sets the value of a certain attribute in a certain row
 	public void setValueAt(Object value,int row,int column) {
 		categories.get(row)[column]=value;
+		fm.save(categories);
+		this.fireTableCellUpdated(row, column);
 	}
 	
 	//removes the ith row from the table

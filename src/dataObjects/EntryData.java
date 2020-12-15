@@ -39,6 +39,11 @@ public class EntryData extends AbstractTableModel implements Serializable{
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) { return entries.get(rowIndex)[columnIndex]; }
 
+		@Override
+		public boolean isCellEditable(int row, int column) {
+				return true;
+		}
+		
 		//removes the ith row from the table
 		public void removeRow(int row) {
 			entries.remove(row);
@@ -49,6 +54,8 @@ public class EntryData extends AbstractTableModel implements Serializable{
 		//Sets the value of a certain attribute in a certain row
 		public void setValueAt(Object value,int row,int column) {
 			entries.get(row)[column]=value;
+			fm.save(entries);
+			this.fireTableCellUpdated(row, column);
 		}
 		
 		//Adds a category to the list and saves it to the file

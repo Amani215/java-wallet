@@ -33,7 +33,7 @@ public class NewCategory extends JPanel{
 		this.setLayout(new BorderLayout());
 		
 		//Table containing the current categories
-		JTable t = new JTable(data);
+		final JTable t = new JTable(data);
 			//Changing the column name
 			t.getColumnModel().getColumn(0).setHeaderValue("Categories");
         JScrollPane scrollPane = new JScrollPane(t);
@@ -48,6 +48,12 @@ public class NewCategory extends JPanel{
                  if(reply==JOptionPane.YES_OPTION) {
                 	 data.removeRow(row);
                  }
+               }
+               else if(me.getClickCount() == 1) {
+            	   JTable target = (JTable)me.getSource();
+                   int row = target.getSelectedRow(); 
+                   int col = target.getSelectedColumn();
+                   data.setValueAt(t.getValueAt(row, col), row, col);
                }
             }
         });

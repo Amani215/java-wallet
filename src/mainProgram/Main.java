@@ -1,7 +1,5 @@
 package mainProgram;
 
-//deletion and update of entries and categories.
-//Mydata add the most expensive category
 //JUnit
 import java.awt.BorderLayout;
 import java.awt.Dimension;
