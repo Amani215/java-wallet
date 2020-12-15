@@ -9,18 +9,18 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import fileManagement.FileManagement;
-import mainProgram.Main;
 
 @SuppressWarnings("serial")
 public class EntryData extends AbstractTableModel implements Serializable{
 	//Attributes
 		public ArrayList<Object[]> entries = new ArrayList<Object[]>();
-		private FileManagement fm = new FileManagement(Main.entriesFile);
+		private FileManagement fm;
 		public String columnNames[]= {"Type","Date","Category","Amount"};
 		
 		//Constructor
-		public EntryData(){
-			File f = new File(Main.entriesFile);
+		public EntryData(String filename){
+			this.fm= new FileManagement(filename);
+			File f = new File(filename);
 			//If the file exists load existing data
 			if(f.exists() && !f.isDirectory()) { 
 				entries = fm.load(entries);
@@ -124,7 +124,7 @@ public class EntryData extends AbstractTableModel implements Serializable{
 			double s=0;
 			for(int i=0; i<entries.size();i++) {
 				if(entries.get(i)[0].equals(type)) {
-					s+=(double)entries.get(i)[3];
+					s=s+Double.parseDouble(entries.get(i)[3].toString());
 				}
 			}
 			return s;
@@ -135,7 +135,7 @@ public class EntryData extends AbstractTableModel implements Serializable{
 			double s=0;
 			for(int i=0; i<entries.size();i++) {
 				if((entries.get(i)[0].equals(type))&&(entries.get(i)[2].equals(category))) {
-					s+=(double)entries.get(i)[3];
+					s+=s+Double.parseDouble(entries.get(i)[3].toString());
 				}
 			}
 			return s;

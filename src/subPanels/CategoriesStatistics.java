@@ -8,10 +8,11 @@ import javax.swing.JPanel;
 
 import dataObjects.CategoryData;
 import dataObjects.EntryData;
+import mainProgram.Main;
 
 @SuppressWarnings("serial")
 public class CategoriesStatistics extends JPanel {
-	CategoryData categories = new CategoryData();
+	CategoryData categories = new CategoryData(Main.categoriesFile);
 	ArrayList<JLabel> array = new ArrayList<JLabel>();
 	
 	//Constructor

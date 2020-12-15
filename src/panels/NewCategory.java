@@ -16,12 +16,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import dataObjects.CategoryData;
+import mainProgram.Main;
 import ui.*;
 
 @SuppressWarnings("serial")
 public class NewCategory extends JPanel{
 	//Attributes
-	private CategoryData data = new CategoryData();
+	private CategoryData data = new CategoryData(Main.categoriesFile);
 	
 	private JPanel panel = new JPanel();
 	private JLabel label = new JLabel("Category name: ");

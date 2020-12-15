@@ -1,7 +1,4 @@
-/frames/
-/dataObjects/
-/fileManagement/
-/mainProgram/
 /panels/
+/dataObjects/
 /subPanels/
-/ui/
+/mainProgram/

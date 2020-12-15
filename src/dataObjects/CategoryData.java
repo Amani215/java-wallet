@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import fileManagement.FileManagement;
-import mainProgram.Main;
 
 @SuppressWarnings("serial")
 public class CategoryData extends AbstractTableModel implements Serializable{
 	//Attributes
 	public ArrayList<Object[]> categories = new ArrayList<Object[]>();
-	private FileManagement fm = new FileManagement(Main.categoriesFile);
+	private FileManagement fm;
 	
 	//Constructor
-	public CategoryData(){
-		File f = new File(Main.categoriesFile);
+	public CategoryData(String filename){
+		fm  = new FileManagement(filename);
+		File f = new File(filename);
 		//If the file exists load existing data
 		if(f.exists() && !f.isDirectory()) { 
 			categories = fm.load(categories);
@@ -55,10 +55,10 @@ public class CategoryData extends AbstractTableModel implements Serializable{
 	}
 	
 	//removes the ith row from the table
-			public void removeRow(int row) {
-				categories.remove(row);
-				fm.save(categories);
-				this.fireTableRowsDeleted(row, row);
+	public void removeRow(int row) {
+		categories.remove(row);
+		fm.save(categories);
+		this.fireTableRowsDeleted(row, row);
 	}
 
 	//Adds a category to the list and saves it to the file

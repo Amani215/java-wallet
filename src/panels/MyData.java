@@ -19,13 +19,14 @@ import javax.swing.JTable;
 
 import dataObjects.CategoryData;
 import dataObjects.EntryData;
+import mainProgram.Main;
 import subPanels.FilterEntries;
 import ui.Styles;
 
 @SuppressWarnings("serial")
 public class MyData extends JPanel{
-	EntryData data = new EntryData();
-	CategoryData categories = new CategoryData();
+	EntryData data = new EntryData(Main.entriesFile);
+	CategoryData categories = new CategoryData(Main.categoriesFile);
 	private JButton filterButton = new JButton("Filter");
 	private JButton applyButton = new JButton("Apply Filters");
 	

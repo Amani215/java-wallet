@@ -13,13 +13,14 @@ import javax.swing.JPanel;
 
 import dataObjects.CategoryData;
 import dataObjects.EntryData;
+import mainProgram.Main;
 import subPanels.CategoriesStatistics;
 import ui.Styles;
 
 @SuppressWarnings("serial")
 public class Statistics extends JPanel{
-	EntryData data = new EntryData();
-	CategoryData categories = new CategoryData();
+	EntryData data = new EntryData(Main.entriesFile);
+	CategoryData categories = new CategoryData(Main.categoriesFile);
 	JLabel label = new JLabel("Please choose the dates.");
 	JButton validate = new JButton("Validate");
 	JPanel result = new JPanel();
@@ -67,14 +68,14 @@ public class Statistics extends JPanel{
 		Styles.styleButton(validate);
 		validate.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				int y1 = (int) boxOfYears1.getSelectedItem();
-	        	int m1 = ((int) boxOfMonths1.getSelectedIndex()) +1;
-	        	int d1 = (int) boxOfDays1.getSelectedItem();
+				int y1 = Integer.parseInt(boxOfYears1.getSelectedItem().toString());
+	        	int m1 = boxOfMonths1.getSelectedIndex() +1;
+	        	int d1 = Integer.parseInt(boxOfDays1.getSelectedItem().toString());
 	        	LocalDate date1 = LocalDate.of(y1, m1, d1);
 	        	
-	        	int y2 = (int) boxOfYears2.getSelectedItem();
+	        	int y2 = Integer.parseInt(boxOfYears2.getSelectedItem().toString());
 	        	int m2 = ((int) boxOfMonths2.getSelectedIndex()) +1;
-	        	int d2 = (int) boxOfDays2.getSelectedItem();
+	        	int d2 = Integer.parseInt(boxOfDays2.getSelectedItem().toString());
 	        	LocalDate date2 = LocalDate.of(y2, m2, d2);
 	        	
 	        	if(date1.isAfter(date2))

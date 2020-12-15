@@ -16,12 +16,13 @@ import javax.swing.JTextField;
 
 import dataObjects.CategoryData;
 import dataObjects.EntryData;
+import mainProgram.Main;
 import ui.*;
 
 @SuppressWarnings("serial")
 public class NewEntry extends JPanel {
-	private CategoryData categories = new CategoryData();
-	private EntryData entries = new EntryData();
+	private CategoryData categories = new CategoryData(Main.categoriesFile);
+	private EntryData entries = new EntryData(Main.entriesFile);
 
 	public NewEntry() {
 		//General settings
@@ -73,9 +74,9 @@ public class NewEntry extends JPanel {
             public void actionPerformed(ActionEvent ae) {
             	String entryType = (String) boxOfTypes.getSelectedItem();
             	
-            	int y = (int) boxOfYears.getSelectedItem();
+            	int y = Integer.parseInt(boxOfYears.getSelectedItem().toString());
             	int m = ((int) boxOfMonths.getSelectedIndex()) +1;
-            	int d = (int) boxOfDays.getSelectedItem();
+            	int d = Integer.parseInt(boxOfDays.getSelectedItem().toString());
             	LocalDate date = LocalDate.of(y, m, d);
             	
             	String entryCategory = (String) boxOfCategories.getSelectedItem();

@@ -1,15 +1,4 @@
 package panels;
-/*THINGSTO FIX*/
-//The setValueAt() functions are useless if you're not planning to make entries and categories updatable
-
-/*TO DO*/
-//Money in Wallet Panel
-//Statistics Panel
-//Login
-
-/*IF YOU CAN*/
-//Make entries deletable in Money in wallet panel (and updatable)
-//Same for categories in New category panel
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

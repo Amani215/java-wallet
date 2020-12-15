@@ -7,10 +7,11 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import dataObjects.CategoryData;
+import mainProgram.Main;
 
 @SuppressWarnings("serial")
 public class FilterEntries extends JPanel{
-	CategoryData categories = new CategoryData();
+	CategoryData categories = new CategoryData(Main.categoriesFile);
 	public JRadioButton incomeRB = new JRadioButton("Income");
     public JRadioButton expenseRB = new JRadioButton("Expense");
     public JCheckBox[] checkBoxes = new JCheckBox[categories.categories.size()];
