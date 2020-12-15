@@ -47,6 +47,13 @@ public class CategoryData extends AbstractTableModel implements Serializable{
 		categories.get(row)[column]=value;
 	}
 	
+	//removes the ith row from the table
+			public void removeRow(int row) {
+				categories.remove(row);
+				fm.save(categories);
+				this.fireTableRowsDeleted(row, row);
+	}
+
 	//Adds a category to the list and saves it to the file
 	public void addCategory(String name) {
 		Object[] category={name};

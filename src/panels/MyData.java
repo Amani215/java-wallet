@@ -4,12 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -60,7 +63,7 @@ public class MyData extends JPanel{
 		applyButton.addActionListener(new ButtonActionListener());
 		
 		//Table containing the entries
-		JTable t = new JTable(data);
+		final JTable t = new JTable(data);
 			//change the column names
 			for(int i=0;i<4;i++) {
 				t.getColumnModel().getColumn(i).setHeaderValue(data.columnNames[i]);
@@ -68,6 +71,20 @@ public class MyData extends JPanel{
         JScrollPane scrollPane = new JScrollPane(t);
         	this.add(scrollPane,BorderLayout.CENTER);
         
+    	t.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent me) {
+               if (me.getClickCount() == 2) {   
+                  JTable target = (JTable)me.getSource();
+                  int row = target.getSelectedRow(); 
+                 int reply =JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this entry?");
+                 if(reply==JOptionPane.YES_OPTION) {
+                	 data.removeRow(row);
+                	 setLabels();
+                 }
+               }
+            }
+        });
+    	
         //To make the JScrollPane as small as the JTable
     	t.setPreferredScrollableViewportSize(new Dimension(t.getPreferredSize().width, t.getRowHeight() * t.getRowCount()));
         
@@ -82,6 +99,7 @@ public class MyData extends JPanel{
         labelsPanel.add(new JLabel(" "));
         labelsPanel.add(expensiveCategory);
         this.add(labelsPanel,BorderLayout.SOUTH);
+        
     	
 	}
 	

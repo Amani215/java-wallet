@@ -4,9 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -36,6 +39,18 @@ public class NewCategory extends JPanel{
         JScrollPane scrollPane = new JScrollPane(t);
         	this.add(scrollPane);
         
+    	t.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent me) {
+               if (me.getClickCount() == 2) {   
+                  JTable target = (JTable)me.getSource();
+                  int row = target.getSelectedRow(); 
+                 int reply =JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this entry?");
+                 if(reply==JOptionPane.YES_OPTION) {
+                	 data.removeRow(row);
+                 }
+               }
+            }
+        });
         //To make the JScrollPane as small as the JTable
     	t.setPreferredScrollableViewportSize(new Dimension(t.getPreferredSize().width, t.getRowHeight() * t.getRowCount()));
     	
