@@ -29,7 +29,7 @@ public class Main extends JFrame{
 	public Main() {
 		super("WALLET");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(630,350));
+		setMinimumSize(new Dimension(630,450));
 		
 		currentPanel.add(login);
 		

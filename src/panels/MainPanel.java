@@ -28,7 +28,6 @@ public class MainPanel extends JPanel{
 			private JButton myData = new JButton("My Data");
 			private JButton statistics = new JButton("Statistics");
 		private JPanel result = new JPanel();
-		private JTextField test = new JTextField(20);
 		private final JPanel panel = this;
 		
 		//Constructor
@@ -107,13 +106,13 @@ public class MainPanel extends JPanel{
 					panel.repaint();
 				}
 				else if(e.getActionCommand()=="statistics") {
-					test.setText("statistics");
+					//add the statistics panel to the main panel
+					Statistics statisticsPanel = new Statistics();
 					result.removeAll();
-					result.add(test);
+					result.add(statisticsPanel);
 					panel.add(result);
 					panel.validate();
 					panel.repaint();
-					//add the statistics panel to the main panel
 				}
 			}
 		}

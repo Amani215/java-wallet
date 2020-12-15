@@ -3,6 +3,7 @@ package dataObjects;
 import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
@@ -89,11 +90,37 @@ public class EntryData extends AbstractTableModel implements Serializable{
 			}
 		}
 		
+		//Filters the entries according to the given dates
+		public void filterDates(LocalDate date1,LocalDate date2) {
+			entries = fm.load(entries);
+			int i=0;
+			while((i<entries.size())&&(entries.get(i)!=null)) {
+				if((date1.isAfter((ChronoLocalDate) entries.get(i)[1]))||(date2.isBefore((ChronoLocalDate) entries.get(i)[1]))) {
+					entries.remove(i);
+				}
+				else {
+					i++;
+				}
+			}
+			this.fireTableDataChanged();
+		}
+		
 		//returns the sum of all registered amounts of the given type of entry
 		public double calculateTotal(String type) {
 			double s=0;
 			for(int i=0; i<entries.size();i++) {
 				if(entries.get(i)[0].equals(type)) {
+					s+=(double)entries.get(i)[3];
+				}
+			}
+			return s;
+		}
+		
+		//returns the sum of all registered amounts of the given type of entry in the given category
+		public double calculateTotalInCategory(String type, String category) {
+			double s=0;
+			for(int i=0; i<entries.size();i++) {
+				if((entries.get(i)[0].equals(type))&&(entries.get(i)[2].equals(category))) {
 					s+=(double)entries.get(i)[3];
 				}
 			}
