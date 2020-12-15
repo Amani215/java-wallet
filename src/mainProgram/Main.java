@@ -24,16 +24,19 @@ public class Main extends JFrame{
 	private JButton loginButton = new JButton("Login");
 	private MainPanel mainPanel = new MainPanel();
 	
+	private JFrame frame = this;
+	
 	public Main() {
 		super("WALLET");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(630,170));
+		setMinimumSize(new Dimension(630,350));
 		
 		currentPanel.add(login);
 		
 		Styles.styleButton(loginButton);
 		currentPanel.add(loginButton,BorderLayout.SOUTH);
 		
+		//login button action listener
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usr = login.usernameField.getText();
@@ -53,8 +56,8 @@ public class Main extends JFrame{
 						login.usernameField.setText("");
 						login.passwordField.setText("");
 						
-						currentPanel.removeAll();
-						currentPanel.add(mainPanel);
+						frame.remove(currentPanel);
+						frame.add(mainPanel);
 						validate();
 						repaint();
 					}
@@ -66,11 +69,10 @@ public class Main extends JFrame{
 						login.usernameField.setText("");
 						login.passwordField.setText("");
 						
-						currentPanel.removeAll();
-						currentPanel.add(mainPanel);
+						frame.remove(currentPanel);
+						frame.add(mainPanel);
 						validate();
 						repaint();
-						System.out.println("logged in");
 					}
 					else
 						JOptionPane.showMessageDialog(null,"Wrong password!","Wrong password",JOptionPane.WARNING_MESSAGE);	
@@ -79,10 +81,11 @@ public class Main extends JFrame{
 			});
 		
 		this.add(currentPanel);
+		
 	}
+	
 	public static void main(String[] args) {
 		Main mainFrame = new Main();
-		
 		mainFrame.setVisible(true);
 	}
 }

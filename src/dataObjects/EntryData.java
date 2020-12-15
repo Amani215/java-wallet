@@ -8,17 +8,18 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import fileManagement.FileManagement;
+import mainProgram.Main;
 
 @SuppressWarnings("serial")
 public class EntryData extends AbstractTableModel implements Serializable{
 	//Attributes
 		public ArrayList<Object[]> entries = new ArrayList<Object[]>();
-		private FileManagement fm = new FileManagement("wallet.txt");
+		private FileManagement fm = new FileManagement(Main.entriesFile);
 		public String columnNames[]= {"Type","Date","Category","Amount"};
 		
 		//Constructor
 		public EntryData(){
-			File f = new File("wallet.txt");
+			File f = new File(Main.entriesFile);
 			//If the file exists load existing data
 			if(f.exists() && !f.isDirectory()) { 
 				entries = fm.load(entries);

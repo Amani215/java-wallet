@@ -7,16 +7,17 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import fileManagement.FileManagement;
+import mainProgram.Main;
 
 @SuppressWarnings("serial")
 public class CategoryData extends AbstractTableModel implements Serializable{
 	//Attributes
 	public ArrayList<Object[]> categories = new ArrayList<Object[]>();
-	private FileManagement fm = new FileManagement("categories.txt");
+	private FileManagement fm = new FileManagement(Main.categoriesFile);
 	
 	//Constructor
 	public CategoryData(){
-		File f = new File("categories.txt");
+		File f = new File(Main.categoriesFile);
 		//If the file exists load existing data
 		if(f.exists() && !f.isDirectory()) { 
 			categories = fm.load(categories);
