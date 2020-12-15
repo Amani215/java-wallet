@@ -1,5 +1,8 @@
 package mainProgram;
 
+//deletion and update of entries and categories.
+//Mydata add the most expensive category
+//JUnit
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -29,7 +32,7 @@ public class Main extends JFrame{
 	public Main() {
 		super("WALLET");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(630,450));
+		setMinimumSize(new Dimension(630,500));
 		
 		currentPanel.add(login);
 		

@@ -39,6 +39,7 @@ public class MyData extends JPanel{
 	private JLabel totalIncome = new JLabel();
 	private JLabel totalExpenses = new JLabel();
 	private JLabel currentBalance = new JLabel();
+	private JLabel expensiveCategory = new JLabel();
 		
 	//Constructor
 	public MyData() {
@@ -74,9 +75,12 @@ public class MyData extends JPanel{
         
         JPanel labelsPanel = new JPanel();
         labelsPanel.setLayout(new BoxLayout(labelsPanel, BoxLayout.Y_AXIS));
+        labelsPanel.add(new JLabel(" "));
         labelsPanel.add(totalIncome);
         labelsPanel.add(totalExpenses);
         labelsPanel.add(currentBalance);
+        labelsPanel.add(new JLabel(" "));
+        labelsPanel.add(expensiveCategory);
         this.add(labelsPanel,BorderLayout.SOUTH);
     	
 	}
@@ -119,5 +123,14 @@ public class MyData extends JPanel{
 		totalIncome.setText("Total Income: "+income);
 		totalExpenses.setText("Total Expenses: "+expenses);
 		currentBalance.setText("Current Balance: "+(income-expenses));
+		
+		double max = data.calculateTotalInCategory("Expense",categories.getValueAt(0,0).toString());
+		expensiveCategory.setText("The most expensive category is: "+categories.getValueAt(0,0).toString()+" with expenses = "+max);
+		for(int i=1; i<categories.categories.size(); i++) {
+			if(data.calculateTotalInCategory("Expense",categories.getValueAt(i,0).toString())>max) {
+				max = data.calculateTotalInCategory("Expense",categories.getValueAt(i,0).toString());
+				expensiveCategory.setText("The most expensive category is '"+categories.getValueAt(i,0).toString()+"' with expenses = "+max);
+				}
+		}
 	}
 }
