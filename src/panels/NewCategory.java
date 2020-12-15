@@ -31,6 +31,8 @@ public class NewCategory extends JPanel{
 		
 		//Table containing the current categories
 		JTable t = new JTable(data);
+			//Changing the column name
+			t.getColumnModel().getColumn(0).setHeaderValue("Categories");
         JScrollPane scrollPane = new JScrollPane(t);
         	this.add(scrollPane);
         

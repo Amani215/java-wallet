@@ -14,6 +14,7 @@ public class EntryData extends AbstractTableModel implements Serializable{
 	//Attributes
 		public ArrayList<Object[]> entries = new ArrayList<Object[]>();
 		private FileManagement fm = new FileManagement("wallet.txt");
+		public String columnNames[]= {"Type","Date","Category","Amount"};
 		
 		//Constructor
 		public EntryData(){
@@ -47,5 +48,43 @@ public class EntryData extends AbstractTableModel implements Serializable{
 			entries.add(entry);
 			fm.save(entries);
 			fireTableRowsInserted(0, getRowCount());
+		}
+		
+		//Filters the entries according to the given filters
+		public void filterEntries(String typeFilter, ArrayList<String> categoriesFilter) {
+			entries = fm.load(entries);
+			filterType(typeFilter);
+			if(categoriesFilter.size()!=0) {
+				filterCategory(categoriesFilter);
+			}
+			this.fireTableDataChanged();
+		}
+		
+		//Filters the entries according to the type
+		private void filterType(String typeFilter) {
+			if((typeFilter.equals("Income"))||(typeFilter.equals("Expense"))){
+				int i=0;
+				while((i<entries.size())&&(entries.get(i)!=null)) {
+					if(entries.get(i)[0].toString().compareToIgnoreCase(typeFilter)!=0) {
+						entries.remove(i);
+					}
+					else {
+						i++;
+					}
+				}
+			}
+		}
+		
+		//Filters the entries according to the category
+		private void filterCategory(ArrayList<String> categoriesFilter) {
+			int i=0;
+			while((i<entries.size())&&(entries.get(i)!=null)) {
+				if(!categoriesFilter.contains(entries.get(i)[2].toString())) {
+					entries.remove(i);
+				}
+				else {
+					i++;
+				}
+			}
 		}
 }

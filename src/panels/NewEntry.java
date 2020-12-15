@@ -1,5 +1,6 @@
 package panels;
 
+//Consider changing the box of types to radio buttons
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +22,7 @@ import ui.*;
 public class NewEntry extends JPanel {
 	private CategoryData categories = new CategoryData();
 	private EntryData entries = new EntryData();
-	
+
 	public NewEntry() {
 		//General settings
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

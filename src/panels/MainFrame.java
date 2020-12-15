@@ -2,6 +2,15 @@ package panels;
 /*THINGSTO FIX*/
 //The setValueAt() functions are useless if you're not planning to make entries and categories updatable
 
+/*TO DO*/
+//Money in Wallet Panel
+//Statistics Panel
+//Login
+
+/*IF YOU CAN*/
+//Make entries deletable in Money in wallet panel (and updatable)
+//Same for categories in New category panel
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +25,7 @@ public class MainFrame extends JFrame{
 		private JPanel buttons = new JPanel();
 			private JButton newEntry = new JButton("New Entry");
 			private JButton newCategory = new JButton("New Category");
-			private JButton moneyInWallet = new JButton("Money In Wallet");
+			private JButton myData = new JButton("My Data");
 			private JButton statistics = new JButton("Statistics");
 		private JPanel result = new JPanel();
 		private JTextField test = new JTextField(20);
@@ -42,7 +51,7 @@ public class MainFrame extends JFrame{
 			//Adding the buttons to the menu
 			buttons.add(newEntry);
 			buttons.add(newCategory);
-			buttons.add(moneyInWallet);
+			buttons.add(myData);
 			buttons.add(statistics);
 			
 			//Adding action listeners to the menu buttons
@@ -54,9 +63,9 @@ public class MainFrame extends JFrame{
 	    	ActionListener newCategoryAL = new ButtonActionListener();
 	    	newCategory.addActionListener(newCategoryAL);
 	    	
-	    	moneyInWallet.setActionCommand("moneyInWallet");
-	    	ActionListener moneyInWalletAL = new ButtonActionListener();
-	    	moneyInWallet.addActionListener(moneyInWalletAL);
+	    	myData.setActionCommand("myData");
+	    	ActionListener myDataAL = new ButtonActionListener();
+	    	myData.addActionListener(myDataAL);
 	    	
 	    	statistics.setActionCommand("statistics");
 	    	ActionListener statisticsAL = new ButtonActionListener();
@@ -65,7 +74,7 @@ public class MainFrame extends JFrame{
 	    	//Styling the buttons
 	    	Styles.styleButton(newEntry);
 	    	Styles.styleButton(newCategory);
-	    	Styles.styleButton(moneyInWallet);
+	    	Styles.styleButton(myData);
 	    	Styles.styleButton(statistics);
 		}
 		
@@ -90,14 +99,14 @@ public class MainFrame extends JFrame{
 					frame.getContentPane().validate();
 					frame.getContentPane().repaint();
 				}
-				else if(e.getActionCommand()=="moneyInWallet") {
-					test.setText("money in wallet");
+				else if(e.getActionCommand()=="myData") {
+					//add the my data panel to the main frame
+					MyData myDataPanel = new MyData();
 					result.removeAll();
-					result.add(test);
+					result.add(myDataPanel);
 					frame.add(result);
 					frame.getContentPane().validate();
 					frame.getContentPane().repaint();
-					//add the money in wallet panel to the main frame
 				}
 				else if(e.getActionCommand()=="statistics") {
 					test.setText("statistics");
