@@ -20,7 +20,7 @@ import javax.swing.*;
 import ui.*;
 
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame{
+public class MainPanel extends JPanel{
 		//Attributes
 		private JPanel buttons = new JPanel();
 			private JButton newEntry = new JButton("New Entry");
@@ -29,13 +29,11 @@ public class MainFrame extends JFrame{
 			private JButton statistics = new JButton("Statistics");
 		private JPanel result = new JPanel();
 		private JTextField test = new JTextField(20);
-		private final JFrame frame = this;
+		private final JPanel panel = this;
 		
 		//Constructor
-		public MainFrame() {
+		public MainPanel() {
 			//general settings
-			super("WALLET");
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			this.setLayout(new BorderLayout());
 			setMinimumSize(new Dimension(630,330));
 			
@@ -82,40 +80,40 @@ public class MainFrame extends JFrame{
 		final private class ButtonActionListener implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				if(e.getActionCommand()=="newEntry") {
-					//add the new entry panel to the main frame
+					//add the new entry panel to the main panel
 					NewEntry newEntryPanel = new NewEntry();
 					result.removeAll();
 					result.add(newEntryPanel);
-					frame.add(result);
-					frame.getContentPane().validate();
-					frame.getContentPane().repaint();
+					panel.add(result);
+					panel.validate();
+					panel.repaint();
 				}
 				else if(e.getActionCommand()=="newCategory") {
-					//add the new category panel to the main frame
+					//add the new category panel to the main panel
 					NewCategory newCategoryPanel = new NewCategory();
 					result.removeAll();
 					result.add(newCategoryPanel);
-					frame.add(result);
-					frame.getContentPane().validate();
-					frame.getContentPane().repaint();
+					panel.add(result);
+					panel.validate();
+					panel.repaint();
 				}
 				else if(e.getActionCommand()=="myData") {
-					//add the my data panel to the main frame
+					//add the my data panel to the main panel
 					MyData myDataPanel = new MyData();
 					result.removeAll();
 					result.add(myDataPanel);
-					frame.add(result);
-					frame.getContentPane().validate();
-					frame.getContentPane().repaint();
+					panel.add(result);
+					panel.validate();
+					panel.repaint();
 				}
 				else if(e.getActionCommand()=="statistics") {
 					test.setText("statistics");
 					result.removeAll();
 					result.add(test);
-					frame.add(result);
-					frame.getContentPane().validate();
-					frame.getContentPane().repaint();
-					//add the statistics panel to the main frame
+					panel.add(result);
+					panel.validate();
+					panel.repaint();
+					//add the statistics panel to the main panel
 				}
 			}
 		}

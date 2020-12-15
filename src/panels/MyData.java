@@ -96,6 +96,5 @@ public class MyData extends JPanel{
 				data.filterEntries(typeFilter, categoriesFilter);
 			}
 		}
-
 	}
 }
