@@ -18,6 +18,7 @@ public class CategoryData extends AbstractTableModel implements Serializable{
 	public CategoryData(String filename){
 		fm  = new FileManagement(filename);
 		File f = new File(filename);
+		
 		//If the file exists load existing data
 		if(f.exists() && !f.isDirectory()) { 
 			categories = fm.load(categories);
@@ -42,6 +43,7 @@ public class CategoryData extends AbstractTableModel implements Serializable{
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) { return categories.get(rowIndex)[columnIndex]; }
 
+	//The cells are editable
 	@Override
 	public boolean isCellEditable(int row, int column) {
 			return true;

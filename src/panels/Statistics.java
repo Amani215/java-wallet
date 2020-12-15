@@ -19,6 +19,7 @@ import ui.Styles;
 
 @SuppressWarnings("serial")
 public class Statistics extends JPanel{
+	//attributes
 	EntryData data = new EntryData(Main.entriesFile);
 	CategoryData categories = new CategoryData(Main.categoriesFile);
 	JLabel label = new JLabel("Please choose the dates.");
@@ -28,6 +29,7 @@ public class Statistics extends JPanel{
 	
 	//Constructor
 	public Statistics() {
+		//general settings
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		//Date combo boxes and panel
@@ -65,6 +67,7 @@ public class Statistics extends JPanel{
 		datesPanel.add(datePanel2);
 		datesPanel.add(validate);
 		
+		//validation button
 		Styles.styleButton(validate);
 		validate.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -93,6 +96,7 @@ public class Statistics extends JPanel{
 			
 		});
 		
+		//add the components to the panel
 		this.add(datesPanel);
 		this.add(result);
 	}

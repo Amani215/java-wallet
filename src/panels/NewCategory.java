@@ -40,6 +40,7 @@ public class NewCategory extends JPanel{
         JScrollPane scrollPane = new JScrollPane(t);
         	this.add(scrollPane);
         
+        //table mouse listener
     	t.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent me) {
                if (me.getClickCount() == 2) {   

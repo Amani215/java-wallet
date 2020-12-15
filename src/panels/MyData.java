@@ -1,5 +1,5 @@
 package panels;
-//Add a filter option and a sort option
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -25,8 +25,9 @@ import ui.Styles;
 
 @SuppressWarnings("serial")
 public class MyData extends JPanel{
-	EntryData data = new EntryData(Main.entriesFile);
-	CategoryData categories = new CategoryData(Main.categoriesFile);
+	//attributes
+	private EntryData data = new EntryData(Main.entriesFile);
+	private CategoryData categories = new CategoryData(Main.categoriesFile);
 	private JButton filterButton = new JButton("Filter");
 	private JButton applyButton = new JButton("Apply Filters");
 	
@@ -47,9 +48,10 @@ public class MyData extends JPanel{
 		
 	//Constructor
 	public MyData() {
+		//general settings
 		this.setLayout(new BorderLayout());
 		
-		//filterPanel.setLayout(new BoxLayout(filterPanel, BoxLayout.Y_AXIS));
+		//creating the filter panel
 		Styles.styleButton(filterButton); Styles.styleButton(applyButton);
 		
 		buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.Y_AXIS));
@@ -72,8 +74,10 @@ public class MyData extends JPanel{
         JScrollPane scrollPane = new JScrollPane(t);
         	this.add(scrollPane,BorderLayout.CENTER);
         
+        //table mouse listeners
     	t.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent me) {
+            	//deletion of row
                if (me.getClickCount() == 2) {   
                   JTable target = (JTable)me.getSource();
                   int row = target.getSelectedRow(); 
@@ -83,6 +87,7 @@ public class MyData extends JPanel{
                 	 setLabels();
                  }
                }
+               //update of cell
                else if(me.getClickCount() == 1) {
             	   JTable target = (JTable)me.getSource();
                    int row = target.getSelectedRow(); 
@@ -97,6 +102,7 @@ public class MyData extends JPanel{
         
         setLabels();
         
+        //add the components to the panel
         JPanel labelsPanel = new JPanel();
         labelsPanel.setLayout(new BoxLayout(labelsPanel, BoxLayout.Y_AXIS));
         labelsPanel.add(new JLabel(" "));
@@ -110,6 +116,7 @@ public class MyData extends JPanel{
     	
 	}
 	
+	//button action listener
 	private final class ButtonActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand()=="filter") {

@@ -8,8 +8,10 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class FileManagement {
+	//attributes
 	private String filename;
 	
+	//constructor
 	public FileManagement(String filename) {
 		this.filename = filename;
 	}

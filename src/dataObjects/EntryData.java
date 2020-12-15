@@ -12,7 +12,7 @@ import fileManagement.FileManagement;
 
 @SuppressWarnings("serial")
 public class EntryData extends AbstractTableModel implements Serializable{
-	//Attributes
+		//Attributes
 		public ArrayList<Object[]> entries = new ArrayList<Object[]>();
 		private FileManagement fm;
 		public String columnNames[]= {"Type","Date","Category","Amount"};
@@ -31,7 +31,7 @@ public class EntryData extends AbstractTableModel implements Serializable{
 		@Override
 		public int getRowCount() { return entries.size(); }
 
-		//Returns the number of fields for a category
+		//Returns the number of fields for an entry
 		@Override
 		public int getColumnCount() { return 4; }//type, category, date, amount
 
@@ -39,6 +39,7 @@ public class EntryData extends AbstractTableModel implements Serializable{
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) { return entries.get(rowIndex)[columnIndex]; }
 
+		//The cells are editable
 		@Override
 		public boolean isCellEditable(int row, int column) {
 				return true;
@@ -58,7 +59,7 @@ public class EntryData extends AbstractTableModel implements Serializable{
 			this.fireTableCellUpdated(row, column);
 		}
 		
-		//Adds a category to the list and saves it to the file
+		//Adds an entry to the list and saves it to the file
 		public void addEntry(String type, LocalDate date, String category, double amount) {
 			Object[] entry={type,date,category,amount};
 			entries.add(entry);

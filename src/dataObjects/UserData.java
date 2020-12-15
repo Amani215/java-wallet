@@ -9,12 +9,14 @@ import fileManagement.FileManagement;
 
 @SuppressWarnings("serial")
 public class UserData implements Serializable{
+	//attributes
 	private ArrayList<Object[]> users = new ArrayList<Object[]>();
 	private FileManagement fm = new FileManagement("users.txt");
 	
 	//Constructor
 	public UserData(){
 		File f = new File("users.txt");
+		
 		//If the file exists load existing data
 		if(f.exists() && !f.isDirectory()) { 
 			users = fm.load(users);
@@ -32,6 +34,7 @@ public class UserData implements Serializable{
 		fm.save(users);
 		users=fm.load(users);
 		
+		//Create the personnalized files for the user
 		String entriesFilename = new String(username+"_wallet.txt");
 		String categoriesFilename = new String(username+"_categories.txt");
 		

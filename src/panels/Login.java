@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class Login extends JPanel {
+	//attributes
 	public String entriesFile = new String();
 	public String categoriesFile = new String();
 	public boolean loggedIn = false;
@@ -23,20 +24,24 @@ public class Login extends JPanel {
 	
 	//Constructor
 	public Login() {
+		//general settings
 		this.setLayout(new BorderLayout());
 		
+		//start message
 		JLabel label = new JLabel("If you're using this for the first time you can still login with a new username and password!");
 		JLabel label2= new JLabel("Please secure your password as there won't be any possibility to change it afterwards.");
 		JPanel labelPanel = new JPanel();
 		labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
 		labelPanel.add(label); labelPanel.add(label2);
 		
+		//username panel
 		JPanel usernamePanel = new JPanel();
 		usernamePanel.add(username); usernamePanel.add(usernameField);
-		
+		//password panel
 		JPanel passwordPanel = new JPanel();
 		passwordPanel.add(password); passwordPanel.add(passwordField);
 		
+		//adding everything to the login panel
 		JPanel coordinatesPanel = new JPanel();
 		coordinatesPanel.setLayout(new BorderLayout());
 		coordinatesPanel.add(usernamePanel,BorderLayout.NORTH);

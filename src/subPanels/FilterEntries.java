@@ -11,6 +11,7 @@ import mainProgram.Main;
 
 @SuppressWarnings("serial")
 public class FilterEntries extends JPanel{
+	//attributes
 	CategoryData categories = new CategoryData(Main.categoriesFile);
 	public JRadioButton incomeRB = new JRadioButton("Income");
     public JRadioButton expenseRB = new JRadioButton("Expense");

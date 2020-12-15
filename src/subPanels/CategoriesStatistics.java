@@ -12,6 +12,7 @@ import mainProgram.Main;
 
 @SuppressWarnings("serial")
 public class CategoriesStatistics extends JPanel {
+	//attributes
 	CategoryData categories = new CategoryData(Main.categoriesFile);
 	ArrayList<JLabel> array = new ArrayList<JLabel>();
 	
