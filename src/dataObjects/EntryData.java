@@ -88,4 +88,15 @@ public class EntryData extends AbstractTableModel implements Serializable{
 				}
 			}
 		}
+		
+		//returns the sum of all registered amounts of the given type of entry
+		public double calculateTotal(String type) {
+			double s=0;
+			for(int i=0; i<entries.size();i++) {
+				if(entries.get(i)[0].equals(type)) {
+					s+=(double)entries.get(i)[3];
+				}
+			}
+			return s;
+		}
 }

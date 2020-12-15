@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -34,6 +35,10 @@ public class MyData extends JPanel{
 		private ArrayList<String> categoriesFilter = new ArrayList<String>();
 		
 		private FilterEntries filters = new FilterEntries();
+	
+	private JLabel totalIncome = new JLabel();
+	private JLabel totalExpenses = new JLabel();
+	private JLabel currentBalance = new JLabel();
 		
 	//Constructor
 	public MyData() {
@@ -64,10 +69,19 @@ public class MyData extends JPanel{
         
         //To make the JScrollPane as small as the JTable
     	t.setPreferredScrollableViewportSize(new Dimension(t.getPreferredSize().width, t.getRowHeight() * t.getRowCount()));
+        
+        setLabels();
+        
+        JPanel labelsPanel = new JPanel();
+        labelsPanel.setLayout(new BoxLayout(labelsPanel, BoxLayout.Y_AXIS));
+        labelsPanel.add(totalIncome);
+        labelsPanel.add(totalExpenses);
+        labelsPanel.add(currentBalance);
+        this.add(labelsPanel,BorderLayout.SOUTH);
     	
 	}
 	
-	public final class ButtonActionListener implements ActionListener{
+	private final class ButtonActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand()=="filter") {
 				//Add the apply filters button
@@ -96,5 +110,14 @@ public class MyData extends JPanel{
 				data.filterEntries(typeFilter, categoriesFilter);
 			}
 		}
+	}
+
+	//Sets the general statistics labels
+	private void setLabels() {
+		double income = data.calculateTotal("Income");
+		double expenses = data.calculateTotal("Expense");
+		totalIncome.setText("Total Income: "+income);
+		totalExpenses.setText("Total Expenses: "+expenses);
+		currentBalance.setText("Current Balance: "+(income-expenses));
 	}
 }
